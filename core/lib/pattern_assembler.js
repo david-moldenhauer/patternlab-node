@@ -292,13 +292,7 @@ var pattern_assembler = function () {
 
     var relativeDepth = (relPath.match(/\w(?=\\)|\w(?=\/)/g) || []).length;
     if (relativeDepth > 2) {
-      console.log('');
-      plutils.warning('Warning:');
-      plutils.warning('A pattern file: ' + relPath + ' was found greater than 2 levels deep from ' + patternlab.config.paths.source.patterns + '.');
-      plutils.warning('It\'s Partial is now '+currentPattern.patternPartial);
-      plutils.warning('While Pattern Lab may still function, assets may 404 and frontend links may break. Consider yourself warned. ');
-      plutils.warning('Read More: http://patternlab.io/docs/pattern-organization.html');
-      console.log('');
+      plutils.warning('Warning: ' + relPath + ' was found greater than 2 levels deep from _patterns, It\'s partial is ' + currentPattern.patternPartial + 'now.');
     }
 
     //if file is named in the syntax for variants

@@ -284,7 +284,7 @@ var patternlab_engine = function (config) {
    */
   function processHeadPattern() {
     try {
-      var headPath = path.resolve(paths.source.meta, '_00-head.mustache');
+      var headPath = path.resolve(paths.source.meta, '_00-head.hbs');
       var headPattern = new Pattern(headPath, null, patternlab);
       headPattern.template = fs.readFileSync(headPath, 'utf8');
       headPattern.isPattern = false;
@@ -304,7 +304,7 @@ var patternlab_engine = function (config) {
    */
   function processFootPattern() {
     try {
-      var footPath = path.resolve(paths.source.meta, '_01-foot.mustache');
+      var footPath = path.resolve(paths.source.meta, '_01-foot.hbs');
       var footPattern = new Pattern(footPath, null, patternlab);
       footPattern.template = fs.readFileSync(footPath, 'utf8');
       footPattern.isPattern = false;

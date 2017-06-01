@@ -292,7 +292,7 @@ var pattern_assembler = function () {
 
     var relativeDepth = (relPath.match(/\w(?=\\)|\w(?=\/)/g) || []).length;
     if (relativeDepth > 2) {
-      plutils.warning('Warning: ' + relPath + ' was found greater than 2 levels deep from _patterns, It\'s partial is ' + currentPattern.patternPartial + 'now.');
+      plutils.warning('Warning: ' + relPath + ' was found greater than 2 levels deep from _patterns, It\'s partial is ' + currentPattern.patternPartial + ' now.');
     }
 
     //if file is named in the syntax for variants

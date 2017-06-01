@@ -49,6 +49,13 @@ var Pattern = function (relPath, data, patternlab) {
   // the joined pattern group and subgroup directory
   this.flatPatternPath = this.subdir.replace(/[\/\\]/g, '-'); // '00-atoms-00-global'
 
+  if ((relPath.match(/\w(?=\\)|\w(?=\/)/g) || []).length > 2) { // pattern was found greater than 2 levels deep
+    this.name = this.subdir.replace(/[\/\\]/g, '-');
+    this.patternSubGroup = this.subdir.split(path.sep)[1].replace(patternPrefixMatcher, '');
+    this.patternSubType = this.subdir.split(path.sep)[1];
+    this.flatPatternPath = this.flatPatternPath.replace(/(.*)(-\d{0,2}-\w+)$/, "$1");
+  }
+
   // calculated path from the root of the public directory to the generated
   // (rendered!) html file for this pattern, to be shown in the iframe
   this.patternLink = patternlab ? this.getPatternLink(patternlab, 'rendered') : null;

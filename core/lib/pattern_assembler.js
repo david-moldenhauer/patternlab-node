@@ -248,19 +248,6 @@ var pattern_assembler = function () {
 
   function processPatternIterative(relPath, patternlab) {
 
-    var relativeDepth = (relPath.match(/\w(?=\\)|\w(?=\/)/g) || []).length;
-    if (relativeDepth > 2) {
-      console.log('');
-      plutils.warning('Warning:');
-      plutils.warning('A pattern file: ' + relPath + ' was found greater than 2 levels deep from ' + patternlab.config.paths.source.patterns + '.');
-      plutils.warning('It\'s strongly suggested to not deviate from the following structure under _patterns/');
-      plutils.warning('[patternType]/[patternSubtype]/[patternName].[patternExtension]');
-      console.log('');
-      plutils.warning('While Pattern Lab may still function, assets may 404 and frontend links may break. Consider yourself warned. ');
-      plutils.warning('Read More: http://patternlab.io/docs/pattern-organization.html');
-      console.log('');
-    }
-
     //check if the found file is a top-level markdown file
     var fileObject = path.parse(relPath);
     if (fileObject.ext === '.md') {
@@ -302,6 +289,17 @@ var pattern_assembler = function () {
 
     //make a new Pattern Object
     var currentPattern = new Pattern(relPath, null, patternlab);
+
+    var relativeDepth = (relPath.match(/\w(?=\\)|\w(?=\/)/g) || []).length;
+    if (relativeDepth > 2) {
+      console.log('');
+      plutils.warning('Warning:');
+      plutils.warning('A pattern file: ' + relPath + ' was found greater than 2 levels deep from ' + patternlab.config.paths.source.patterns + '.');
+      plutils.warning('It\'s Partial is now '+currentPattern.patternPartial);
+      plutils.warning('While Pattern Lab may still function, assets may 404 and frontend links may break. Consider yourself warned. ');
+      plutils.warning('Read More: http://patternlab.io/docs/pattern-organization.html');
+      console.log('');
+    }
 
     //if file is named in the syntax for variants
     if (patternEngines.isPseudoPatternJSON(filename)) {

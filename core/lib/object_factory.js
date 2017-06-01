@@ -50,7 +50,8 @@ var Pattern = function (relPath, data, patternlab) {
   this.flatPatternPath = this.subdir.replace(/[\/\\]/g, '-'); // '00-atoms-00-global'
 
   if ((relPath.match(/\w(?=\\)|\w(?=\/)/g) || []).length > 2) { // pattern was found greater than 2 levels deep
-    this.name = this.subdir.replace(/[\/\\]/g, '-');
+    var variantName = (/.*(~.*)\.json/g.exec(relPath) || ["",""])[1].replace("~", "-");
+    this.name = this.subdir.replace(/[\/\\]/g, '-')+variantName;
     this.patternSubGroup = this.subdir.split(path.sep)[1].replace(patternPrefixMatcher, '');
     this.patternSubType = this.subdir.split(path.sep)[1];
     this.flatPatternPath = this.flatPatternPath.replace(/(.*)(-\d{0,2}-\w+)$/, "$1");

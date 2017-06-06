@@ -54,7 +54,7 @@ var Pattern = function (relPath, data, patternlab) {
     this.name = this.subdir.replace(/[\/\\]/g, '-')+variantName;
     this.patternSubGroup = this.subdir.split(path.sep)[1].replace(patternPrefixMatcher, '');
     this.patternSubType = this.subdir.split(path.sep)[1];
-    this.flatPatternPath = this.flatPatternPath.replace(/(.*)(-\d{0,2}-\w+)$/, "$1");
+    this.flatPatternPath = this.flatPatternPath.replace(/(.*)(-\d{0,2}(-\w+)+)$/, "$1");
   }
 
   // calculated path from the root of the public directory to the generated

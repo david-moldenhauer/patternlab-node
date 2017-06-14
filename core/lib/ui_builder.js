@@ -590,7 +590,7 @@ var ui_builder = function () {
     output += 'var viewAllPaths = ' + JSON.stringify(patternlab.viewAllPaths) + ';' + eol;
 
     //plugins
-    output += 'var plugins = ' + JSON.stringify(patternlab.plugins || []) + ';' + eol;
+    output += 'var plugins = ' + JSON.stringify(patternlab.config.plugins || []) + ';' + eol;
 
     //smaller config elements
     output += 'var defaultShowPatternInfo = ' + (patternlab.config.defaultShowPatternInfo ? patternlab.config.defaultShowPatternInfo : 'false') + ';' + eol;
